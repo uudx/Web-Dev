@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To-Do list</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class = "Tab">
+            <p>ToDo list</p>
+        </div>
+        <h2 class = "main-h2">ToDo List</h2>
+        <div class = "main">
+            <div class="container">
+                <div class="add-box">
+                    <input type="text" id="taskInput" placeholder="New Task">
+                    <button onclick="addItem()">Add</button>
+                </div>
+
+                <div class="list" id="list">
+                    <div class="item done">
+                    <input type="checkbox" checked>
+                    <span class="text">First item</span>
+                    <span class="delete">🗑</span>
+                    </div>
+
+                    <div class="item">
+                    <input type="checkbox">
+                    <span class="text">Second item</span>
+                    <span class="delete">🗑</span>
+                    </div>
+
+                    <div class="item">
+                    <input type="checkbox">
+                    <span class="text">Third item</span>
+                    <span class="delete">🗑</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src = "script.js"></script>
+    </body>
+</html>

@@ -11,6 +11,9 @@ list.addEventListener("click", function(e){
     if(e.target.classList.contains("delete")){
         e.target.parentElement.remove();
     }
+    if(e.target.classList.contains("edit")){
+        console.log(e.target.closest("span"));
+    }
 });
 
 function addItem(){

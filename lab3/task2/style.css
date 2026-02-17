@@ -126,6 +126,12 @@ body {
     color: #333;
 }
 
+.edit {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
 .item.done .text {
     text-decoration: line-through;
     color: #888;

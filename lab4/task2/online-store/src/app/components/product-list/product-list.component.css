@@ -102,12 +102,6 @@
   background: white;
 }
 
-.search-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(227, 0, 15, 0.1);
-}
-
 .search-input::placeholder {
   color: var(--text-muted);
 }
@@ -120,7 +114,7 @@
   border: none;
   background: var(--border-color);
   color: var(--text-secondary);
-  border-radius: 50%;
+  border-radius: 30%;
   font-size: 18px;
   line-height: 1;
   cursor: pointer;

@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: '',
     component: ProductListComponent,
-    title: 'Online Store - Kaspi.kz Products'
+    title: 'Online Store'
   },
   {
     path: '**',

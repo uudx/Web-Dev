@@ -120,6 +120,10 @@ body {
     accent-color: rgba(21, 0, 255, 0.527);
 }
 
+.countContainer span {
+    color: #888;
+}
+
 .text {
     flex: 1;
     font-size: 16px;

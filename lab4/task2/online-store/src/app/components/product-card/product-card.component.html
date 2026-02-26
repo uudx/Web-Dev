@@ -7,10 +7,6 @@
       (click)="toggleGallery()"
       loading="lazy"
     >
-    <div class="gallery-indicator" *ngIf="product.images.length > 1" (click)="toggleGallery()">
-      <span class="gallery-icon">📷</span>
-      <span class="gallery-count">{{ product.images.length }}</span>
-    </div>
     <span class="category-badge" *ngIf="product.category">{{ product.category }}</span>
     <span class="stock-badge" *ngIf="product.inStock !== undefined" [class.in-stock]="product.inStock" [class.out-of-stock]="!product.inStock">
       {{ product.inStock ? 'В наличии' : 'Нет в наличии' }}
@@ -44,7 +40,7 @@
         class="btn btn-primary view-btn"
       >
         <span>🛒</span>
-        <span>На Kaspi.kz</span>
+        <span>Kaspi.kz</span>
       </a>
       <div class="share-dropdown" (mouseleave)="closeShareOptions()">
         <button 

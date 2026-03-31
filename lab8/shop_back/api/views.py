@@ -1,78 +1,81 @@
 from django.http import JsonResponse
+from django.views import View
+from django.shortcuts import get_object_or_404
 from .models import Product, Category
+import json
 
-
-# /api/products/
-def products_list(request):
-    products = Product.objects.all()
-    data = [
-        {
-            "id": p.id,
-            "name": p.name,
-            "price": p.price,
-            "description": p.description,
-            "count": p.count,
-            "is_active": p.is_active,
-            "category_id": p.category.id
-        }
-        for p in products
-    ]
-    return JsonResponse(data, safe=False)
-
-
-# /api/products/<int:id>/
-def product_detail(request, id):
-    try:
-        p = Product.objects.get(id=id)
-        data = {
-            "id": p.id,
-            "name": p.name,
-            "price": p.price,
-            "description": p.description,
-            "count": p.count,
-            "is_active": p.is_active,
-            "category_id": p.category.id
-        }
-        return JsonResponse(data)
-    except Product.DoesNotExist:
-        return JsonResponse({"error": "Product not found"}, status=404)
-
-
-# /api/categories/
-def categories_list(request):
-    categories = Category.objects.all()
-    data = [{"id": c.id, "name": c.name} for c in categories]
-    return JsonResponse(data, safe=False)
-
-
-# /api/categories/<int:id>/
-def category_detail(request, id):
-    try:
-        c = Category.objects.get(id=id)
-        data = {"id": c.id, "name": c.name}
-        return JsonResponse(data)
-    except Category.DoesNotExist:
-        return JsonResponse({"error": "Category not found"}, status=404)
-
-
-# /api/categories/<int:id>/products/
-def category_products(request, id):
-    try:
-        category = Category.objects.get(id=id)
-        products = Product.objects.filter(category=category)
-
-        data = [
-            {
-                "id": p.id,
-                "name": p.name,
-                "price": p.price,
-                "description": p.description,
-                "count": p.count,
-                "is_active": p.is_active
-            }
-            for p in products
-        ]
+class ProductListView(View):
+    def get(self, request):
+        products = Product.objects.all()
+        data = []
+        for product in products:
+            data.append({
+                'id': product.id,
+                'name': product.name,
+                'price': product.price,
+                'description': product.description,
+                'count': product.count,
+                'is_active': product.is_active,
+                'category': {
+                    'id': product.category.id,
+                    'name': product.category.name
+                }
+            })
         return JsonResponse(data, safe=False)
 
-    except Category.DoesNotExist:
-        return JsonResponse({"error": "Category not found"}, status=404)
+class ProductDetailView(View):
+    def get(self, request, id):
+        product = get_object_or_404(Product, id=id)
+        data = {
+            'id': product.id,
+            'name': product.name,
+            'price': product.price,
+            'description': product.description,
+            'count': product.count,
+            'is_active': product.is_active,
+            'category': {
+                'id': product.category.id,
+                'name': product.category.name
+            }
+        }
+        return JsonResponse(data)
+
+class CategoryListView(View):
+    def get(self, request):
+        categories = Category.objects.all()
+        data = []
+        for category in categories:
+            data.append({
+                'id': category.id,
+                'name': category.name
+            })
+        return JsonResponse(data, safe=False)
+
+class CategoryDetailView(View):
+    def get(self, request, id):
+        category = get_object_or_404(Category, id=id)
+        data = {
+            'id': category.id,
+            'name': category.name
+        }
+        return JsonResponse(data)
+
+class CategoryProductsView(View):
+    def get(self, request, id):
+        category = get_object_or_404(Category, id=id)
+        products = category.products.all()
+        data = []
+        for product in products:
+            data.append({
+                'id': product.id,
+                'name': product.name,
+                'price': product.price,
+                'description': product.description,
+                'count': product.count,
+                'is_active': product.is_active,
+                'category': {
+                    'id': product.category.id,
+                    'name': product.category.name
+                }
+            })
+        return JsonResponse(data, safe=False)

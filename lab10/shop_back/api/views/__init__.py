@@ -1,15 +1,12 @@
-# By default, use the generic views (Level 5)
-# To switch to a different level, comment/uncomment the appropriate imports
-
-# Level 5: Generic Views (currently active)
+# Level 5
 from .generics import *
-# from .generics import ProductListAPIView, ProductDetailAPIView, CategoryListAPIView, CategoryDetailAPIView, CategoryProductsAPIView
+from .generics import ProductListAPIView, ProductDetailAPIView, CategoryListAPIView, CategoryDetailAPIView, CategoryProductsAPIView
 
-# Level 4: Mixins
+# Level 4
 # from .mixins import ProductListAPIView, ProductDetailAPIView
 
-# Level 3: Class-Based Views
+# Level 3
 # from .cbv import ProductListAPIView, ProductDetailAPIView
 
-# Level 2: Function-Based Views
+# Level 2
 # from .fbv import products_list as ProductListAPIView, product_detail as ProductDetailAPIView
